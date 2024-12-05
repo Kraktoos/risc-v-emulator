@@ -10,17 +10,24 @@ def preassemble(input_filename: str, output_filename: str | None):
   lines, commands = others.parse_input_file(input_filename)
 
   final_commands = []
-  for command, i in enumerate(commands):
+  for i, command in enumerate(commands):
     t_inst, t_args = command
     if t_inst not in lib.pseudoinstructions:
       final_commands.append(lines[i])
     else:
       for pseudoinstruction in lib.pseudoinstructions[t_inst]:
-        inst = pseudoinstruction["inst"]
-        args = pseudoinstruction["args"]
-        if len(t_args) != len(lib.pseudoinstructions_arguments[t_inst]):
-          raise Exception(f"Instruction {inst} takes {len(lib.pseudoinstructions_arguments[t_inst])} arguments, got {len(t_args)}")
-        final_commands.append(" ".join([inst] + [t_args[lib.pseudoinstructions_arguments[t_inst].index(x)] for x in args]))
+        new_inst = pseudoinstruction["inst"]
+        current_arguments = lib.pseudoinstructions_arguments[t_inst]
+        new_arguments = pseudoinstruction["args"]
+
+        updated_args = []
+        for arg in new_arguments:
+          if arg in current_arguments:
+            updated_args.append(t_args[current_arguments.index(arg)])
+          else:
+            updated_args.append(arg)
+
+        final_commands.append(new_inst + " " + ", ".join(updated_args))
 
   if output_filename is not None:
     open(output_filename, "w").write("\n".join(final_commands))

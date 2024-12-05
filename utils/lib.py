@@ -4,6 +4,9 @@ def to_bin(num, bits):
 def to_hex(num, bits):
   return format(num, f"0{bits}x")
 
+def to_dec(binary, bits):
+  return int(binary, 2)
+
 instructions = {
   # Arithmetic
   "add": {"FMT": "R", "opcode": "0110011", "funct3": "000", "funct7": "0000000"},

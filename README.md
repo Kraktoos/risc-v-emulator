@@ -1,13 +1,14 @@
-# RISC-V Emulator
+# RISC-V Emulator (WIP)
 
 ## Description
-This is a simple RISC-V emulator that can preassemble, assemble and ~~run~~ *(maybe soon)* a subset of RISC-V instructions.
+This is a simple RISC-V emulator that can preassemble, assemble, disassemble and ~~run~~ *(soon?)* a subset of RISC-V instructions.
 
 ## Supported Instructions
 - Arithmetic: `add`, `addi`, `sub`, `mul`, `div`, `rem`
 - Logic: `and`, `xor`, `or`
 - Memory: `lw`, `lh`, `lb`, `sw`, `sh`, `sb`
 - Control: `beq`, `bne`
+- Psuedo Instructions: `mv`, `neg`
 
 ## How to setup
 1. Clone the repository
@@ -52,3 +53,34 @@ Output binary written to program/a.out
 ```
 00000110010100000000001010010011000011001010000000000011000100110000001001110011010000101011001100000000000000000000000001100011
 ```
+
+### Pre-Assembling
+
+#### Prerequisites
+`program/main.s`
+```
+addi x5, x0, 100
+mv x6, x5
+neg x7, x6
+```
+
+#### Command
+```bash
+python preassemble.py program/main.s -o program/out.s
+```
+
+#### Output
+```
+Output written to programs/out.s
+```
+
+`program/out.s`
+```
+addi x5, x0, 100
+addi x6, x5, 0
+sub x7, x0, x6
+```
+
+### Disassembling (WIP)
+
+### Running (WIP)
