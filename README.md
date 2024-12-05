@@ -8,7 +8,7 @@ This is a simple RISC-V emulator that can preassemble, assemble, disassemble and
 - Logic: `and`, `xor`, `or`
 - Memory: `lw`, `lh`, `lb`, `sw`, `sh`, `sb`
 - Control: `beq`, `bne`
-- Psuedo Instructions: `mv`, `neg`
+- Pseudo Instructions: `mv`, `neg`
 
 ## How to setup
 1. Clone the repository

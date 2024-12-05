@@ -1,0 +1,12 @@
+- [x] Make Pre-Assembler work for pseudo instructions (e.g. `mv`, `neg`)
+- [ ] Make Pre-Assembler work for labels (e.g. `loop:`) and comments (e.g. `# This is a comment`)
+- [ ] Make Runner work with "pre-assembled" files (no need to worry about labels etc.)
+  - [ ] Program Counter
+  - [ ] Registers
+  - [ ] Memory
+  - [ ] Stack Pointer
+  - [ ] Instructions:
+    - [ ] Arithmetic: `add`, `addi`, `sub`, `mul`, `div`, `rem`
+    - [ ] Logic: `and`, `xor`, `or`
+    - [ ] Memory: `lw`, `lh`, `lb`, `sw`, `sh`, `sb`
+    - [ ] Control: `beq`, `bne`
