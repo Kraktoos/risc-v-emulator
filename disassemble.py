@@ -7,9 +7,9 @@ parser.add_argument("filename", type=str, help="The binary file to disassemble")
 parser.add_argument("--output", "-o", type=str, help="The output file to write to", default=None)
 parser.add_argument("--verbose", "-v", action="store_true", help="Print the disassembled code", default=True)
 
-def disassemble(input_filename: str, output_filename: str | None, verbose: bool):
+def disassemble(input_filename: str):
   whole_file = open(input_filename, "r").read().strip()
-  binary_instructions = [whole_file[i:i + 32] for i in range(0, len(whole_file), 32)] # split into 32-bit instructions
+  binary_instructions = others.split_binary(whole_file, 32) # split into 32-bit instructions
 
   disassembled_instructions = []
 
@@ -57,14 +57,17 @@ def disassemble(input_filename: str, output_filename: str | None, verbose: bool)
       raise Exception(f"Failed to decode binary instruction: {binary_instruction}")
 
     disassembled_instructions.append(instruction_decoded)
-
-  if output_filename is not None:
-    open(output_filename, "w").write("\n".join(disassembled_instructions))
-    print(f"Disassembled instructions written to {output_filename}\n")
-
-  if verbose:
-    others.print_table(["Binary", "Hex", "Command"], [[binary_instructions[i], "0x" + lib.to_hex(int(binary_instructions[i], 2), 8), disassembled_instructions[i]] for i in range(len(binary_instructions))])
+  
+  return disassembled_instructions
 
 if __name__ == "__main__":
   args = parser.parse_args()
-  disassemble(args.filename, args.output, args.verbose)
+  disassembled_instructions = disassemble(args.filename, args.output, args.verbose)
+  binary_instructions = others.split_binary(open(args.filename, "r").read().strip(), 32)
+
+  if args.output is not None:
+    open(args.output, "w").write("\n".join(disassembled_instructions))
+    print(f"Disassembled instructions written to {args.output}\n")
+
+  if args.verbose:
+    others.print_table(["Binary", "Hex", "Command"], [[binary_instructions[i], "0x" + lib.to_hex(int(binary_instructions[i], 2), 8), disassembled_instructions[i]] for i in range(len(binary_instructions))])
