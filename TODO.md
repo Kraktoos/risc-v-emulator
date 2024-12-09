@@ -16,10 +16,11 @@
   - [ ] The slicing & negative number problem persists
 - Runner
   - [x] Run from file
+  - [ ] Optional debug mode (click to advance to next instruction?)
   - Features
     - [x] Program Counter
     - [x] Registers
     - [x] Memory
     - [ ] Branches w/ PC
-    - [ ] Stack Pointer 
+    - [ ] Stack Pointer
     - [ ] Functions
