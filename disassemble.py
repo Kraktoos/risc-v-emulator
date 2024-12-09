@@ -41,11 +41,13 @@ def disassemble(input_filename: str):
             end, start = map(int, _range.split(":"))
             length = end - start + 1
             args[instruction] = lib.to_dec(binary_instruction[index:index + length], lib.bit_formats[instruction])
+            # args[instruction] = lib.to_dec(binary_instruction[index:index + length] + "0", length + 1)
             index += length
           else:
             # extract a normal argument
             length = lib.bit_formats[f]
             args[f] = lib.to_dec(binary_instruction[index:index + length], lib.bit_formats[f])
+            # args[f] = lib.to_dec(binary_instruction[index:index + length])
             index += length
 
       if match:
@@ -62,7 +64,7 @@ def disassemble(input_filename: str):
 
 if __name__ == "__main__":
   args = parser.parse_args()
-  disassembled_instructions = disassemble(args.filename, args.output, args.verbose)
+  disassembled_instructions = disassemble(args.filename)
   binary_instructions = others.split_binary(open(args.filename, "r").read().strip(), 32)
 
   if args.output is not None:

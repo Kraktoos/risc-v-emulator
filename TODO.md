@@ -1,12 +1,25 @@
-- [x] Make Pre-Assembler work for pseudo instructions (e.g. `mv`, `neg`)
-- [ ] Make Pre-Assembler work for labels (e.g. `loop:`) and comments (e.g. `# This is a comment`)
-- [ ] Make Runner work with "pre-assembled" files (no need to worry about labels etc.)
-  - [ ] Program Counter
-  - [ ] Registers
-  - [ ] Memory
-  - [ ] Stack Pointer
-  - [ ] Instructions:
-    - [ ] Arithmetic: `add`, `addi`, `sub`, `mul`, `div`, `rem`
-    - [ ] Logic: `and`, `xor`, `or`
-    - [ ] Memory: `lw`, `lh`, `lb`, `sw`, `sh`, `sb`
-    - [ ] Control: `beq`, `bne`
+- Pre-assembler
+  - [x] Read file
+  - [x] Parse file
+  - Features
+    - [x] Pseudo instructions (e.g. `mv`, `neg`)
+    - [ ] "Pseudo names" (e.g. `zero`, `ra`, `t0`, ...)
+    - [ ] Labels (e.g. `loop:`)
+    - [ ] Comments
+- Assembler
+  - [x] Convert to binary
+  - [x] Convert to hex
+  - [x] Save in a file, if needed
+  - [ ] Fix branches (converting it to binary yields a wrong result) - they're saved in a weird manner
+  - [ ] Converting & deconverting from binary is wrong with negative values -> IMM values need to be reworked because they are sliced wrong
+- Disassembler
+  - [ ] The slicing & negative number problem persists
+- Runner
+  - [x] Run from file
+  - Features
+    - [x] Program Counter
+    - [x] Registers
+    - [x] Memory
+    - [ ] Branches w/ PC
+    - [ ] Stack Pointer 
+    - [ ] Functions

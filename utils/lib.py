@@ -1,11 +1,19 @@
-def to_bin(num, bits):
+def to_bin(num, bits=8):
+  # if num < 0:
+  #   print(num, 2**bits + num)
+  #   print(format(2**bits + num, f"0{bits}b"))
+  #   return format(2**bits + num, f"0{bits}b")
+  # return format(num, f"0{bits}b")
   return format(num, f"0{bits}b")
+
+def to_dec(binary, max_bits=8):
+  # if binary.startswith("1"):
+  #   return int(binary, 2) - 2**max_bits
+  # return int(binary, 2) & (2**max_bits - 1)
+  return int(binary, 2)
 
 def to_hex(num, bits):
   return format(num, f"0{bits}x")
-
-def to_dec(binary, bits):
-  return int(binary, 2)
 
 instructions = {
   # Arithmetic
@@ -51,7 +59,7 @@ bit_formats = {
 instruction_formats = {
   "R": ["funct7", "rs2", "rs1", "funct3", "rd", "opcode"],
   "I": ["imm-11:0", "rs1", "funct3", "rd", "opcode"],
-  "S": ["imm-11:5]", "rs2", "rs1", "funct3", "imm-4:0", "opcode"],
+  "S": ["imm-11:5", "rs2", "rs1", "funct3", "imm-4:0", "opcode"],
   "B": ["imm-11:11", "imm-9:4", "rs2", "rs1", "funct3", "imm-3:0", "imm-10:10", "opcode"]
 }
 

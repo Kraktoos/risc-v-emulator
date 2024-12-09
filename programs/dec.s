@@ -1,3 +1,5 @@
-addi x5, x0, 100
-addi x6, x5, 0
-sub x7, x0, x6
+addi x5, x0, 0
+addi x6, x0, 5
+
+addi x5, x5, 1
+bne x5, x6, -1

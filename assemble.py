@@ -32,6 +32,8 @@ def assemble(input_filename: str, output_filename: str | None, verbose: bool):
           # is a range (ex: imm-11:0)
           instruction, _range = f.split("-")
           end, start = map(int, _range.split(":"))
+          # binary_num = lib.to_bin(int(args[instruction])//2, lib.bit_formats[instruction])
+          # final_command += binary_num[len(binary_num) - end - 1:len(binary_num) - start]
           binary_num = lib.to_bin(int(args[instruction]), lib.bit_formats[instruction])
           final_command += binary_num[start:end+1]
         else:
